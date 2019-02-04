@@ -71,7 +71,13 @@ export default (bootstrapURLKeys, heatmapLibrary) => {
     );
 
     const baseUrl = getUrl(bootstrapURLKeys.region);
-    const libraries = heatmapLibrary ? '&libraries=visualization' : '';
+    const libraries = bootstrapURLKeys.libraries.reduce((r, current) => {
+      if(r === '') {
+        r = `libraries=${current}`
+      } else {
+        r = r + `,${current}`
+      }
+    }, '')
 
     $script_(
       `${baseUrl}${API_PATH}${params}${libraries}`,
