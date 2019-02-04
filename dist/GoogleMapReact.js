@@ -3005,6 +3005,7 @@
                   } else {
                     r = r + (',' + current);
                   }
+                  return r;
                 },
                 ''
               );

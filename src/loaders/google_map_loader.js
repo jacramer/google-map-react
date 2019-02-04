@@ -71,13 +71,17 @@ export default (bootstrapURLKeys, heatmapLibrary) => {
     );
 
     const baseUrl = getUrl(bootstrapURLKeys.region);
-    const libraries = bootstrapURLKeys.libraries.reduce((r, current) => {
-      if(r === '') {
-        r = `&libraries=${current}`
-      } else {
-        r = r + `,${current}`
-      }
-    }, '')
+    const libraries = bootstrapURLKeys.libraries.reduce(
+      (r, current) => {
+        if (r === '') {
+          r = `&libraries=${current}`;
+        } else {
+          r = r + `,${current}`;
+        }
+        return r;
+      },
+      ''
+    );
 
     $script_(
       `${baseUrl}${API_PATH}${params}${libraries}`,
